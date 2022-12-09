@@ -1,4 +1,57 @@
-innertext);
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewpoint" content="width=device-width, initial-scale=1">
+        <title> TO DO MY LIST </title>
+    </head>
+      <style>
+     html,body{
+        width:50%;
+        margin:0 auto;
+             }
+     .container{
+        width:300px;
+     }
+     #inputfield{
+        width:300px;
+        height:46px;
+        border:1px solid salmon;
+        outline:none;
+        font-size:25px;
+        vertical-align:middle;
+     }
+#addtodo{
+    width:50px;
+    height:50px;
+    border:1px solid greenyellow;
+    vertical-align:middle;
+    font-size:30px;
+   }
+.paragraph-styling{
+margin:0px;
+cursor:pointer;
+font-size:20px;
+color:red;
+}
+    </style>
+    <body>
+        <h1> to do list </h1>
+        <div class="container">
+            <input id="inputfield" type="text" class="input">
+            <button id="addtodo"> + </button>
+            <div id="todocontainer">   </div>
+        </div>
+    <script>
+
+        let addtodo=document.getElementById('addtodo');
+        let inputfield=document.getElementById('inputfield');
+        let todocontainer=document.getElementById('todocontainer');
+        addtodo.addEventListener('click',function()
+        {
+            var paragraph=document.createElement('p');
+            paragraph.classList.add("paragraph-styling");
+            paragraph.innertext=inputfield.value;
+            //console.log(paragraph.innertext);
             var x= document.createTextNode(paragraph.innertext);
             paragraph.appendChild(x);
             todocontainer.appendChild(paragraph);
