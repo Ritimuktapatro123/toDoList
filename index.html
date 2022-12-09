@@ -42,23 +42,52 @@ color:red;
             <div id="todocontainer">   </div>
         </div>
     <script>
-
+         let todocontainer=document.getElementById('todocontainer');
+        let todos=[];
+        todos=(localStorage.getItem('key'))
+        console.log(todos)
+        if(todos==null)
+          {
+            todos=[];
+          } 
+          else{todos=JSON.parse(todos)}
+        for(let i=0;i<todos.length;i++)
+          {
+          // console.log(todos[i])
+          let para= document.createElement('p')
+          para.classList.add("paragraph-styling");
+          console.log(todos[i])
+            para.innerText=todos[i]
+            todocontainer.appendChild(para);
+            para.addEventListener('click',function()
+            {
+                console.log("Clicked")
+               para.style.textDecoration="line-through";
+            })
+            para.addEventListener('dblclick',function()
+            {
+                delete todos[i]
+                localStorage.setItem('key',JSON.stringify(todos))
+               todocontainer.removeChild(para);
+            })
+          }
         let addtodo=document.getElementById('addtodo');
         let inputfield=document.getElementById('inputfield');
-        let todocontainer=document.getElementById('todocontainer');
+
         addtodo.addEventListener('click',function()
         {
             var paragraph=document.createElement('p');
             paragraph.classList.add("paragraph-styling");
-            paragraph.innertext=inputfield.value;
-            //console.log(paragraph.innertext);
-            var x= document.createTextNode(paragraph.innertext);
-            paragraph.appendChild(x);
+            paragraph.innerText=inputfield.value;
+            console.log(paragraph);
+            let todo=[inputfield.value]
+            todos.push(todo)
+            localStorage.setItem('key',JSON.stringify(todos))
             todocontainer.appendChild(paragraph);
             inputfield.value ="";
             paragraph.addEventListener('click',function()
             {
-               paragraph.style.textDecoration="linethrough";
+               paragraph.style.textDecoration="line-through";
             })
             paragraph.addEventListener('dblclick',function()
             {
