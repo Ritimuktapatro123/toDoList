@@ -1,0 +1,17 @@
+innertext);
+            var x= document.createTextNode(paragraph.innertext);
+            paragraph.appendChild(x);
+            todocontainer.appendChild(paragraph);
+            inputfield.value ="";
+            paragraph.addEventListener('click',function()
+            {
+               paragraph.style.textDecoration="linethrough";
+            })
+            paragraph.addEventListener('dblclick',function()
+            {
+               todocontainer.removeChild(paragraph);
+            })
+        })
+     </script>
+    </body>
+</html>
