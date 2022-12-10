@@ -35,14 +35,20 @@ color:red;
 }
     </style>
     <body>
-        <h1> to do list </h1>
+        <h2> to do list </h2>
         <div class="container">
             <input id="inputfield" type="text" class="input">
             <button id="addtodo"> + </button>
             <div id="todocontainer">   </div>
         </div>
+        <h2> date </h2>
+        <div class="container">
+            <input id="datefield" type="text" class="input">
+            <button id="datebutton"> + </button>
+            <div id="datecontainer">  </div>
+        </div>
     <script>
-         let todocontainer=document.getElementById('todocontainer');
+        let todocontainer=document.getElementById('todocontainer');
         let todos=[];
         todos=(localStorage.getItem('key'))
         console.log(todos)
@@ -73,13 +79,12 @@ color:red;
           }
         let addtodo=document.getElementById('addtodo');
         let inputfield=document.getElementById('inputfield');
-
         addtodo.addEventListener('click',function()
         {
             var paragraph=document.createElement('p');
             paragraph.classList.add("paragraph-styling");
             paragraph.innerText=inputfield.value;
-            console.log(paragraph);
+           // console.log(paragraph);
             let todo=[inputfield.value]
             todos.push(todo)
             localStorage.setItem('key',JSON.stringify(todos))
@@ -92,6 +97,68 @@ color:red;
             paragraph.addEventListener('dblclick',function()
             {
                todocontainer.removeChild(paragraph);
+            })
+        })
+        let datecontainer=document.getElementById('datecontainer');
+        let todos1=[];
+        todos1=(localStorage.getItem('key1'))
+        console.log(todos1)
+        if(todos1==null)
+          {
+            todos1=[];
+          } 
+          else{todos1=JSON.parse(todos1)}
+        for(let i=0;i<todos1.length;i++)
+          {
+          // console.log(todos[i])
+          let para1= document.createElement('p')
+          para1.classList.add("paragraph-styling");
+          console.log(todos1[i])
+            para1.innerText=todos1[i]
+            datecontainer.appendChild(para1);
+            para1.addEventListener('click',function()
+            {
+                console.log("Clicked")
+               para1.style.textDecoration="line-through";
+            })
+            para1.addEventListener('dblclick',function()
+            {
+                delete todos1[i]
+                localStorage.setItem('key1',JSON.stringify(todos1))
+               datecontainer.removeChild(para1);
+            })
+          }
+        let datebutton=document.getElementById('datebutton');
+        let datefield=document.getElementById('datefield');
+        datebutton.addEventListener('click',function()
+        {
+            var edit=document.createElement("button");
+            edit.innerText="edit";
+            var del=document.createElement("button");
+            del.innerText="del";
+          //  edit.className="edit";
+            var paragraph1=document.createElement('p');
+            paragraph1.classList.add("paragraph-styling");
+            paragraph1.innerText=datefield.value;
+           // console.log(paragraph);
+            let todo1=[datefield.value]
+            todos1.push(todo1)
+            localStorage.setItem('key1',JSON.stringify(todos1))
+            datecontainer.appendChild(paragraph1);
+            datecontainer.appendChild(edit);
+            datecontainer.appendChild(del);
+            datefield.value ="";
+            paragraph1.addEventListener('click',function()
+            {
+               paragraph1.style.textDecoration="line-through";
+            })
+            paragraph1.addEventListener('dblclick',function()
+            {
+               datecontainer.removeChild(paragraph1);
+            })
+           del.addEventListener('click',function()
+            {
+               datecontainer.removeChild(paragraph1);
             })
         })
      </script>
